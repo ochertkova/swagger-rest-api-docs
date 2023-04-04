@@ -42,7 +42,76 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/book"
-
+  /books/borrow/{book_id}:
+    patch:
+      tags:
+        -library
+    description: Use this API to borrow a book.
+    parameters:
+      -name: book_id
+      description: The id of the book to be borrowed
+      required: true
+      in: path
+      schema:
+       type: integer
+      -name: user_id
+      description: The user id of the borrower
+      required: true
+      in: body
+      required: true
+        schema:
+          $ref: "#/components/schemas/user"
+    responses:
+      "202":
+        description: Book borrowed successfully
+        content:
+          application/json:
+            schema:
+              $ref: "#/component/schemas/book"
+      "401":
+        description: "User is not logged in or the session is expired"
+        content:
+          application/json:
+            schema: 
+              $ref: "#/component/schemas/error"
+      "404":
+          description: A book with the specified ID was not found.
+          content:
+          application/json:
+            schema: 
+              $ref: "#/component/schemas/error"
+  /books/return/{book_id}:
+    patch:
+      tags:
+        -library
+    description: Use this API to return a book
+    parameters:
+      -name: book_id
+      description: The id of the book to be returned
+      required: true
+      in: path
+      schema:
+       type: integer
+      -name: user_id
+      description: The user id of the returner
+      required: true
+      in: body
+      required: true
+        schema:
+          $ref: "#/components/schemas/user"
+    responses:
+      "202":
+        description: Book returned successfully
+        content:
+          application/json:
+            schema:
+              $ref: "#/component/schemas/book"
+      "401":
+        description: "User is not logged in or the session is expired"
+        content:
+          application/json:
+            schema: 
+              $ref: "#/component/schemas/error"
 components:
   schemas:
     book:
@@ -54,7 +123,34 @@ components:
           type: string
         id:
           type: integer
+        isbn:
+          type: string
+        publisher:
+          type: string
+        authors:
+          type: array
+        published:
+          type: string
+        status:
+          type: string
+        borrowerId: 
+          type: integer
+        borrowDate:
+          type: string
+          format: date
+        returnDate:
+          type: string
+          format: date
     books:
       type: array
       items:
         $ref: "#/components/schemas/book"
+    error:
+      type: object
+      properties:
+        status:
+          type: integer
+          example: 404
+        message: 
+          type: string
+          example: "Not found"
