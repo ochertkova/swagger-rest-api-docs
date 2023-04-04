@@ -98,6 +98,66 @@ paths:
       responses:
         default:
           description: successful operation
+  /author:
+    put:
+      tags:
+        - author
+      summary: Update an existing author
+      description: Update an existing author by Id
+      operationId: updateAuthor
+      requestBody:
+        description: Update an existing author
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/author"
+          application/xml:
+            schema:
+              $ref: "#/components/schemas/author"
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: "#/components/schemas/author"
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/author"
+            application/xml:
+              schema:
+                $ref: "#/components/schemas/author"
+        "400":
+          description: Invalid ID supplied
+        "404":
+          description: Author not found
+        "405":
+          description: Validation exception
+  /author/{authorId}:
+    delete:
+      tags:
+        - author
+      summary: Deletes an author
+      description: delete an author
+      operationId: deleteAuthor
+      parameters:
+        - name: api_key
+          in: header
+          description: ""
+          required: false
+          schema:
+            type: string
+        - name: authorId
+          in: path
+          description: Author id to delete
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "400":
+          description: Invalid author value
 
 components:
   schemas:
@@ -144,3 +204,17 @@ components:
       type: array
       items:
         $ref: "#/components/schemas/user"
+    author:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        authorName:
+          type: string
+      xml:
+        name: tag
+    authors:
+      type: array
+      items:
+        $ref: "#/components/schemas/author"
