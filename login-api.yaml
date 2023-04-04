@@ -11,7 +11,7 @@ info:
 
 tags:
   - name: Login
-    description: Operations about user
+    description: Operations about user login
 paths:
   /login:
     get:
