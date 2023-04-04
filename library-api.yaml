@@ -24,6 +24,17 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/book"
+      post:
+      summary: Create a new book
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddBook'
+      responses:
+        '201':
+          description: The created book
   /books/{book_id}:
     get:
       tags:
@@ -42,6 +53,29 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/book"
+    /authors:
+    get:
+      summary: Get the list of all authors
+      responses: 
+        '200':
+          description: list of all authors
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Author'
+    post:
+      summary: Add new author
+      requestBody:
+        required: true
+        content: 
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddAuthor'
+      responses:
+        '201':
+        description: author added
 
 components:
   schemas:
