@@ -1,11 +1,11 @@
 openapi: 3.0.0
 info:
   title: Learn21.in API
-  description: Learn21.in API docs
+  description: REST API for Library system
   version: 1.0.0
   contact:
-    email: uplabs.in@gmail.com
-    name: Learn21
+    email: example@gmail.com
+    name: REST API example
 paths:
   /course/{course_id}:
     get:
