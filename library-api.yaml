@@ -27,6 +27,8 @@ paths:
                 items:
                   $ref: "#/components/schemas/book"
     post:
+      tags:
+          - library
       summary: Create a new book
       requestBody:
         required: true
@@ -57,6 +59,8 @@ paths:
                 $ref: "#/components/schemas/book"
   /authors:
     get:
+      tags:
+          - library
       summary: Get the list of all authors
       responses: 
         '200':
@@ -68,6 +72,8 @@ paths:
                 items:
                   $ref: '#/components/schemas/Author'
     post:
+      tags:
+          - library
       summary: Add new author
       requestBody:
         required: true
