@@ -9,8 +9,14 @@ info:
 tags:
   - name: library
     description: everything about books
+  - name: author
+    description: everything about authors
+  - name: user
+    description: everything about users
   - name: Login
     description: Operations about user login
+servers:
+  - url: http://localhost:5173/api/v1
 paths:
   /books:
     get:
@@ -26,6 +32,19 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/book"
+    post:
+      tags:
+          - library
+      summary: Create a new book
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddBook'
+      responses:
+        '201':
+          description: The created book
   /books/{book_id}:
     get:
       tags:
@@ -44,6 +63,33 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/book"
+  /authors:
+    get:
+      tags:
+          - author
+      summary: Get the list of all authors
+      responses: 
+        '200':
+          description: list of all authors
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Author'
+    post:
+      tags:
+          - author
+      summary: Add new author
+      requestBody:
+        required: true
+        content: 
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddAuthor'
+      responses:
+        '201':
+          description: author added
   /login:
     get:
       tags:
