@@ -77,7 +77,7 @@ paths:
               $ref: '#/components/schemas/AddAuthor'
       responses:
         '201':
-        description: author added
+          description: author added
 
 components:
   schemas:
