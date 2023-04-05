@@ -34,16 +34,16 @@ paths:
                   $ref: "#/components/schemas/book"
     post:
       tags:
-          - library
+        - library
       summary: Create a new book
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/AddBook'
+              $ref: "#/components/schemas/AddBook"
       responses:
-        '201':
+        "201":
           description: The created book
   /books/{book_id}:
     get:
@@ -66,29 +66,29 @@ paths:
   /authors:
     get:
       tags:
-          - author
+        - author
       summary: Get the list of all authors
-      responses: 
-        '200':
+      responses:
+        "200":
           description: list of all authors
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Author'
+                  $ref: "#/components/schemas/Author"
     post:
       tags:
-          - author
+        - author
       summary: Add new author
       requestBody:
         required: true
-        content: 
+        content:
           application/json:
             schema:
-              $ref: '#/components/schemas/AddAuthor'
+              $ref: "#/components/schemas/AddAuthor"
       responses:
-        '201':
+        "201":
           description: author added
   /login:
     get:
@@ -109,7 +109,7 @@ paths:
           description: The password for login
           required: true
           schema:
-            type: password
+            type: string
       responses:
         "200":
           description: successful operation
@@ -207,6 +207,23 @@ paths:
 
 components:
   schemas:
+    Author:
+      type: object
+      properties:
+        id:
+          type: number
+        name:
+          type: string
+    AddAuthor:
+      type: object
+      properties:
+        name:
+          type: string
+    AddBook:
+      type: object
+      properties:
+        name:
+          type: string
     book:
       type: object
       properties:
