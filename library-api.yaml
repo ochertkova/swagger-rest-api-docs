@@ -9,6 +9,8 @@ info:
 tags:
   - name: library
     description: everything about books
+servers:
+  - url: http://localhost:5173/api/v1
 paths:
   /books:
     get:
@@ -24,7 +26,7 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/book"
-      post:
+    post:
       summary: Create a new book
       requestBody:
         required: true
@@ -53,7 +55,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/book"
-    /authors:
+  /authors:
     get:
       summary: Get the list of all authors
       responses: 
