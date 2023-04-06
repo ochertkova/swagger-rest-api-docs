@@ -44,8 +44,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/book"
-  /login:
-    get:
+  /auth/login:
+    post:
       tags:
         - user
       summary: Logs user into the system
@@ -87,7 +87,7 @@ paths:
                 type: string
         "400":
           description: Invalid username/password supplied
-  /logout:
+  /auth/logout:
     get:
       tags:
         - user
@@ -98,10 +98,10 @@ paths:
       responses:
         default:
           description: successful operation
-  /author:
+  /authors/{authorId}:
     put:
       tags:
-        - author
+        - authors
       summary: Update an existing author
       description: Update an existing author by Id
       operationId: updateAuthor
@@ -110,13 +110,13 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/author"
+              $ref: "#/components/schemas/authors"
           application/xml:
             schema:
-              $ref: "#/components/schemas/author"
+              $ref: "#/components/schemas/authors"
           application/x-www-form-urlencoded:
             schema:
-              $ref: "#/components/schemas/author"
+              $ref: "#/components/schemas/authors"
         required: true
       responses:
         "200":
@@ -134,7 +134,7 @@ paths:
           description: Author not found
         "405":
           description: Validation exception
-  /author/{authorId}:
+  /authors/{authorId}:
     delete:
       tags:
         - author
