@@ -45,7 +45,7 @@ paths:
       responses:
         "201":
           description: The created book
-  /books/{book_id}:
+  /books/{bookId}:
     get:
       tags:
         - library
@@ -88,7 +88,7 @@ paths:
         - library
       description: Use this API to return a book
       parameters:
-      - name: book_id
+      - name: bookId
         schema:
          type: string
       responses:
