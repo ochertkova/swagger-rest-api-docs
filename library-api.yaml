@@ -51,7 +51,7 @@ paths:
         - library
       description: Use this API to fetch details of a course
       parameters:
-        - name: book_id
+        - name: bookId
           required: true
           in: path
           schema:
@@ -63,13 +63,13 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/book"
-  /books/borrow/{book_id}:
+  /books/borrow/{bookId}:
     patch:
       tags:
         - library
       description: Use this API to borrow a book.
       parameters:
-      - name: book_id
+      - name: bookId
         description: The id of the book to be borrowed
         required: true
         in: path
@@ -82,7 +82,7 @@ paths:
           description: "User is not logged in or the session is expired"
        "404":
         description: A book with the specified ID was not found.
-  /books/return/{book_id}:
+  /books/return/{bookId}:
     patch:
       tags:
         - library
